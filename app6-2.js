@@ -29,15 +29,40 @@ function Comments() {
     ];
 
     this.like = function (id) {
+        console.log('like clicked:' + id);
 
     }
+
+    this.add= function(record){
+        this.records = [...this.records,record]
+    }
+
 }
 
 function ElementBuilder(tag){
-    const element = document.createElement(tag);
+    this.element = document.createElement(tag);
 
     this.text = function(text){
         this.element.innerText = text;
+        return this;
+    }
+
+    this.style = function(name,value){
+        this.element.style[name] = value;
+        return this;
+    }
+
+    // this.eventListener=function(eventName,fn){
+    //     this.element.addEventListener(eventName,fn);
+    // }
+
+    this.onClick = function(fn){
+        this.element.addEventListener('click',fn);
+        return this;
+    }
+
+    this.appendTo = function(parent){
+        parent.appendChild(this.element);
         return this;
     }
 
@@ -57,23 +82,46 @@ function Painter(coniatner) {
     const comments = new Comments();
     
 
+    function createLogo(){
+
+    }
+
 
     this.render = function () {
 
         const listContainer = builder
             .create('div')
-            .build();
+            .style('border','1px solid red')
+            .style('height','250px')
+            .onClick(function(){
+
+                console.log('clicked');
+            })
+            .appendTo(coniatner);
+        
+        
+        
+        console.log(listContainer);
             
 
         comments.records.forEach(record=>{
-            const child = document.createElement('div');
+            const { id, imageurl } = record;
 
+            const child = builder
+                .create('div')
+                .text(record.text)
+                .onClick(()=>{
+                    
+                    comments.like(id);
+                })
+                .appendTo(listContainer.build());
 
-            listContainer.appendChild(child)
+            const logo = createLogo(imageurl)
+
+            
         })
 
 
-        coniatner.appendChild(listContainer);
 
 
     }
@@ -82,4 +130,4 @@ function Painter(coniatner) {
 
 const coniatner = document.getElementById('root');
 const app = new Painter(coniatner);
-app.rendaer();
+app.render();
