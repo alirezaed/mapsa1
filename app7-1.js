@@ -36,8 +36,18 @@ boys=[boyName2,girlName1];
 //spread ...
 
 const names2 = names.slice();
-const names3 = names;
+const names3 = [...names];
 
 names3[0] = 'hamid';
 console.log(names3)
 console.log(names)
+
+function createName(fname,lname){
+    const fullName = fname +  ' ' + lname;
+    return [fullName,fullName.length];
+}
+
+const [nameWithFamily,len] = createName('ali','hasani');
+
+console.log(nameWithFamily);
+console.log(len);

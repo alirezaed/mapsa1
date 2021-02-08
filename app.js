@@ -81,5 +81,5 @@ function sum(...args){
     console.log(i)
     return t;
 }
-sum(1,2,5,4,2,23)
-//console.log()
+
+console.log(sum(1,2,5,4,2,23,423))
