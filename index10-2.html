@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="react.development.js" ></script>
+    <script src="react-dom.development.js" ></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+
+        //React.createElement(tagname, attrebites-object, children)
+
+        const li1 = React.createElement('li',{},"First");
+        const li2 = React.createElement('li',{},"Second");
+        const li3 = React.createElement('li',{},"Third");
+        
+        const ul = React.createElement('ul',{},li1,li2,li3);
+
+        const firstDiv = React.createElement('div',{
+            style:{
+                backgroundColor:'red',
+                height:'100px',
+                width:'200px'
+            },
+            id:'my-first-div'
+        },ul);
+
+        //ReactDOM.render(element, container)
+        ReactDOM.render(
+            firstDiv,
+            document.getElementById('root')
+        );
+
+
+
+
+
+
+        
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="react.development.js" ></script>
+    <script src="react-dom.development.js" ></script>
+    <script src="babel.min.js" ></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        //babel 
+        //1-jsx ---> React.createElement
+        //2-<ES6 --> ES5
+        
+        //JSX javascript,html  React.createElement
+        //React.createElement(tagname, attrebites-object, children)
+
+        function changeNameToUpperCase(input){
+            return input.toUpperCase();
+        }
+
+        const names = ["ali","reza","maryam","morad","kamran"]
+
+        const listItems = names.map((item,index)=><React.Fragment key={index}>
+                <li >
+                    {changeNameToUpperCase(item)}
+                </li>
+                <span>
+                    😂
+                </span>
+            </React.Fragment>)
+          
+        const ul = <ul>
+            {listItems}
+        </ul>
+
+        const firstDiv = <div style={{
+                backgroundColor:'red',
+                height:'100px',
+                width:'200px'
+            }} id="my-first-div" sssad="ads" >{ul}</div>
+            
+            //Component functions that returns JSX
+
+        console.log(firstDiv);  
+        //ReactDOM.render(element, container)
+        ReactDOM.render(
+            firstDiv,
+            document.getElementById('root')
+        );
+
+
+
+    </script>
+</body>
+</html>

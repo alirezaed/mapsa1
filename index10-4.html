@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="react.development.js" ></script>
+    <script src="react-dom.development.js" ></script>
+    <script src="babel.min.js" ></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        
+
+        //Class component
+        //--Resusability
+        //--Complexity
+        class ListElement extends React.Component{
+            changeNameToUpperCase(input){
+                return input.toUpperCase();
+            }
+
+            render(){
+                return <React.Fragment>
+                    <li >
+                        {this.changeNameToUpperCase(this.props.namex)}
+                    </li>
+                    <span>
+                        😂
+                    </span>
+                </React.Fragment>
+            }
+        }
+
+        class UL extends React.Component{
+            
+            constructor(){
+                super();
+                console.log('UL constructor');
+            }
+
+            render(){
+                const names = ["ali","reza","maryam","morad","kamran"];
+                const listItems = names.map((item,index)=>{
+                    return <ListElement namex={item} key={index} />
+                });
+                
+                return <ul>
+                    {listItems}
+                </ul>
+            }
+        }
+
+        class Root extends React.Component{
+            render(){
+                const rootStyle = {
+                    backgroundColor:'red',
+                    height:'100px',
+                    width:'200px'
+                }
+                return <div style={rootStyle} id="my-first-div" >
+                    <UL />
+                </div>
+            }
+        }
+
+        //Function Component
+        function ULF(props){
+            const names = ["ali","reza","maryam","morad","kamran"];
+
+            const changeNameToUpperCase = (input)=>{
+                return input.toUpperCase();
+            }
+
+            const listItems = names.map((item,index)=><React.Fragment key={index}>
+                <li >
+                    {changeNameToUpperCase(item)}
+                </li>
+                <span>
+                    😂
+                </span>
+            </React.Fragment>);
+                
+            return <ul>
+                {listItems}
+            </ul>
+        }
+
+        function RootF(props){
+            const rootStyle = {
+                backgroundColor:'red',
+                height:'100px',
+                width:'200px'
+            }
+            return <div style={rootStyle} id="my-first-div" >
+                <ULF />
+            </div>
+        }
+
+        //ReactDOM.render(element, container)
+        ReactDOM.render(
+            <Root />,
+            document.getElementById('root')
+        );
+
+
+        //تمرین هفته بعد
+        //لیست کامنتهایی که هفته گذشته داشتید رو با استفاده از تعریف کامئوننت در صفحه نمایش بدید
+        //حداقل دو کامپوننت تعریف کنید یکی برای نمایش یک کامنت و یکی برای نمایش همه کامنتها
+        //یکبار با استفاده از کلاس کامپوننت بنویسید و یکبار با استفاده از فانکشن
+        //دو فایل html برای من می فرستید و در گیت شیر میکنید
+
+    </script>
+</body>
+</html>
